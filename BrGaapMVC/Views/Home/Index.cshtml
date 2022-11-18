@@ -1,0 +1,66 @@
+﻿@model IEnumerable<BrGaapMVC.Models.UsuarioModel.Usuario>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<head>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.quicksearch/2.3.1/jquery.quicksearch.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="form-group input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+        <input name="consulta" id="txt_consulta" placeholder="Consultar" type="text" class="form-control">
+    </div>
+
+    <table id="tabela" class="table table-hover">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Completado</th>
+                <th>Detalhes</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var usuario in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => usuario.title)</td>
+                    <td>@Html.CheckBoxFor(modelItem => usuario.completed)</td>
+                    <td><button data-id="@usuario.userId" class="btn btn-primary details" data-toggle="modal" data-target="#modal"> <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @*Modal detalhes dados*@
+
+    <div class="modal" id="modal">
+    </div>
+
+    @*Fim modal detalhes dados*@
+
+
+    @*Zona de Script*@
+
+    <script>
+        //Efetuando filtro usando função QuickSearch do Jquery a partir do input
+        $('input#txt_consulta').quicksearch('table#tabela tbody tr');
+        
+        $(function () {
+            $(".details").click(function () {
+                var id = $(this).attr("data-id");
+                $("#modal").load("Home/Details?id=" + id, function () {
+                    $("#modal").modal('show');
+                })
+            });
+        })
+    </script>
+
+    @*Fim zona de Script*@
+
+</body>

@@ -1,0 +1,38 @@
+﻿@model BrGaapMVC.Models.DetalheUsuarioModel.DetalheUsuarioObject
+@{
+    Layout = null;
+    ViewBag.Title = "Details";
+}
+
+<div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="usuarioModalLabel"><strong>Informações do Usuário</strong> </h5>
+            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div>
+                <p><strong>@Html.DisplayNameFor(model => model.name) : </strong> @Html.DisplayFor(model => model.name)</p>
+                <p><strong>@Html.DisplayNameFor(model => model.username) : </strong> @Html.DisplayFor(model => model.username)</p>
+                <p><strong>@Html.DisplayNameFor(model => model.email) :</strong> @Html.DisplayFor(model => model.email)</p>
+                <p><strong>@Html.DisplayNameFor(model => model.phone) :</strong> @Html.DisplayFor(model => model.phone)</p>
+                <p><strong>@Html.DisplayNameFor(model => model.website) :</strong> @Html.DisplayFor(model => model.website)</p>
+
+                <h5 class="modal-title" id="usuarioModalLabel"><strong>Endereço:</strong> </h5>
+
+                <p><strong>@Html.DisplayNameFor(model => model.address.street) : </strong> @Html.DisplayFor(model => model.address.street), @Html.DisplayFor(model => model.address.suite)</p>
+                <p><strong> @Html.DisplayNameFor(model => model.address.city) : </strong>@Html.DisplayFor(model => model.address.city)</p>
+                <p><strong> @Html.DisplayNameFor(model => model.address.zipcode) : </strong>@Html.DisplayFor(model => model.address.zipcode) </p>
+
+                <h5 class="modal-title" id="usuarioModalLabel"><strong>Empresa:</strong> </h5>
+
+                <p><strong>@Html.DisplayNameFor(model => model.company.name) : </strong>Html.DisplayFor(model => model.company.name)</p>
+                <p><strong>@Html.DisplayNameFor(model => model.company.catchPhrase) : </strong>@Html.DisplayFor(model => model.company.catchPhrase)</p>
+                <p><strong>@Html.DisplayNameFor(model => model.company.bs) : </strong>@Html.DisplayFor(model => model.company.bs)</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" data-bs-dismiss="modal">Fechar</button>
+        </div>
+    </div>
+</div>
